@@ -46,11 +46,11 @@ table tr td:first-child{
     color:rgb(55, 173, 167);
 }
 
-.newBookWrapper {
+.newBookWrapper, .updateBookWrapper {
     width: 800px;
 }
 
-.newBookWrapper div {
+.newBookWrapper div, .updateBookWrapper div {
     margin-top: 30px;
 }
 

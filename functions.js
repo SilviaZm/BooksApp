@@ -1,4 +1,4 @@
-let container=document.querySelector(".container");
+let container = document.querySelector(".container");
 
 
 let booksObj = [
@@ -47,14 +47,14 @@ let booksObj = [
     },
 
 ]
- 
+
 
 function populateTable(arr) {
 
     let tableBody = document.querySelector('.tableBody');
     let text = '';
 
-    for(let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         text += `
         <tr>
         <td>${arr[i].title}</td>
@@ -70,7 +70,7 @@ function populateTable(arr) {
 
 
 
-function setHome(){
+function setHome() {
     container.innerHTML = `
     <h1>Books</h1>
     <button class="button__primary btnCreate">Create New Book</button>
@@ -95,7 +95,7 @@ function setHome(){
     let btnAdd = document.querySelector(".btnCreate");
 
 
-    btnAdd.addEventListener("click",()=>{
+    btnAdd.addEventListener("click", () => {
 
 
 
@@ -108,10 +108,12 @@ function setHome(){
 
 
 
-function setNewBook(){
+function setNewBook() {
 
 
-    container.innerHTML=`
+
+
+    container.innerHTML = `
     <h1>New Book</h1>
     <div class="newBookWrapper">
         <div>
@@ -132,21 +134,116 @@ function setNewBook(){
         </div>
             <label for=""> </label>
             <div>
-                <button class="button__primary createNewBook">Create New Book</button>
+                <button class="button__primary createNewBookCard">Create New Book</button>
                 <button class="button__primary cancelButton">Cancel</button>
             </div>
     </div>
 
     
     `
+    let newBookWrapper = document.querySelector(".newBookWrapper");
+    let cancel = document.querySelector(".cancelButton");
+    let btnCreateBookCard = document.querySelector(".createNewBookCard");
+    let titleInput = document.querySelector(".titleInput");
+    let authorInput = document.querySelector(".authorInput");
+    let genreInput = document.querySelector(".genreInput");
+    let yearInput = document.querySelector(".yearInput");
 
-    let cancel=document.querySelector(".cancelButton");
+    let errori = [];
 
-
-    cancel.addEventListener("click",()=>{
+    cancel.addEventListener("click", () => {
 
 
         setHome();
     })
 
+    newBookWrapper.addEventListener("input", e => {
+      
+        check();
+    })
+
+
+
+    function check(){
+        errori = [];
+        if (titleInput.value == "") {
+            errori.push(" title ");
+        };
+
+        if (authorInput.value == "") {
+            errori.push(" author ");
+        };
+
+        if (genreInput.value == "") {
+            errori.push(" genre ");
+        };
+
+        if (yearInput.value == "") {
+            errori.push(" year");
+        };
+
+    }
+
+    btnCreateBookCard.addEventListener('click', () => {
+         check();
+
+        let newBook = {
+
+            title: titleInput.value,
+            author: authorInput.value,
+            genre: genreInput.value,
+            year: yearInput.value
+        };
+
+
+        if (errori.length > 0) {
+
+            alert("Please enter a" + errori +"");
+
+        } else {
+            booksObj.push(newBook);
+
+            setHome();
+
+            console.log(newBook)
+
+
+        }
+        // alert(errori);
+
+
+
+    })
+}
+
+
+function updateBook() {
+    container.innerHTML = `
+    <h1>Update This Book</h1>
+    <div class="updateBookWrapper">
+        <div>
+            <label for="">Title</label>
+            <input type="text" class="titleInputUpdate">
+        </div>
+        <div>
+            <label for="">Author</label>
+            <input type="text" class="authorInputUpdate">
+        </div>
+        <div>
+            <label for="">Genre</label>
+            <input type="text" class="genreInputUpdate">
+        </div>
+        <div>
+            <label for="">Year</label>
+            <input type="text" class="yearInputUpdate">
+        </div>
+            <label for=""> </label>
+            <div>
+                <button class="button__primary updateNewBookCard">Create New Book</button>
+                <button class="button__primary cancelButton">Cancel</button>
+            </div>
+    </div>
+
+    
+    `
 }
