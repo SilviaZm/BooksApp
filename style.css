@@ -66,4 +66,22 @@ input {
     border: 1px solid #ddd;
 }
 
+.title {
+    cursor: pointer;
+}
 
+.search__wrapper {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.search__wrapper label {
+    width: auto;
+    margin-right: 8px;
+}
+
+.search__wrapper input {
+    height: 28px;
+    font-size: 16px;
+    padding: 0 10px;
+}
